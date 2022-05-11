@@ -1,4 +1,5 @@
 const grid = document.querySelector('.grid')
+const resultDisplay = document.querySelector('.results')
 let currentShooterIndex = 200
 let width = 15
 let direction = 1
@@ -91,6 +92,21 @@ function moveInvaders()
     }
 
     draw()
+
+    if(squares[currentShooterIndex].classList.contains('invader', 'shooter'))
+    {
+        resultDisplay.innerHTML = "GAME OVER"
+        clearInterval(invaderId)
+    }
+
+    for (let i = 0; i < alienInvaders.length; i++) 
+    {
+        if(alienInvaders[i] > squares.length)
+        {
+            resultDisplay.innerHTML = "GAME OVER"
+            clearInterval(invaderId)
+        }
+    }
 }
 
 invaderId = setInterval(moveInvaders, 500)
